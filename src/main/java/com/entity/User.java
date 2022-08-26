@@ -4,10 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "user_entity")
-public class User {
+public class User extends Auditable<String>
+{
 	@Id
+	
 	private int userId;
 	private String name;
+	private String password;
 	public int getUserId() {
 		return userId;
 	}
@@ -20,21 +23,20 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public User(int userId, String name) {
-		super();
-		this.userId = userId;
-		this.name = name;
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public User() {
 		super();
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + "]";
+	public User(int userId, String name, String password) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.password = password;
 	}
-	
-	
-	
-	
-
 }
