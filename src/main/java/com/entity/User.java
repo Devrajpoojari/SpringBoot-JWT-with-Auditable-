@@ -7,7 +7,6 @@ import javax.persistence.Id;
 public class User extends Auditable<String>
 {
 	@Id
-	
 	private int userId;
 	private String name;
 	private String password;
