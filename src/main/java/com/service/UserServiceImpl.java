@@ -80,11 +80,10 @@ public class UserServiceImpl implements UserServiceInt {
 		}
 		else
 		{
-			throw new ResourceNotFoundException("User is not Found int Db "+ name);
+			throw new ResourceNotFoundException("User is not Found int Db"+ name);
 		}
 		return u;
 	}
-
 	public String getEncodedPassword(String str)
 	{
 		return encoder.encode(str);
