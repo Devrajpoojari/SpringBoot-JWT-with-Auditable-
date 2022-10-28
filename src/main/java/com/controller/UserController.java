@@ -41,7 +41,8 @@ public class UserController {
 	}
 
 	@PutMapping(path = "/update/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable(value = "id") int id, @RequestBody User u) throws ResourceNotFoundException {
+	public ResponseEntity<User> updateUser(@PathVariable(value = "id") int id, @RequestBody User u)
+			throws ResourceNotFoundException {
 		User uu = serviceInt.updateUser(id, u);
 		return ResponseEntity.ok(uu);
 	}
@@ -55,12 +56,11 @@ public class UserController {
 	@GetMapping("getListOfUsers")
 	public ResponseEntity<List<User>> getListOfUsers() {
 		List list = userRepo.findAll();
-
 		return ResponseEntity.ok(list);
 	}
+
 	@GetMapping("getByName/{name}")
-	public ResponseEntity<User> getByName(@PathVariable String name) throws ResourceNotFoundException{
-		
+	public ResponseEntity<User> getByName(@PathVariable String name) throws ResourceNotFoundException {
 		User u = serviceInt.getUserByName(name);
 		return ResponseEntity.ok(u);
 	}

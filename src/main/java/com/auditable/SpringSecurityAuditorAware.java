@@ -14,7 +14,6 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
             && authentication.isAuthenticated() && !authentication.equals("anonymousUser")) {
             return Optional.of(authentication.getName());
         }
-
         return Optional.empty();
     }
 

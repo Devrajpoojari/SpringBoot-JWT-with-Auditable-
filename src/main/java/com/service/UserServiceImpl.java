@@ -15,33 +15,30 @@ public class UserServiceImpl implements UserServiceInt {
 
 	@Autowired
 	private UserRepo userRepo;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
 	public User addUser(User u) throws Exception {
-		User u1=userRepo.getUserByName(u.getName());
+		User u1 = userRepo.getUserByName(u.getName());
 		User uu;
-		if(u1==null)
-		{
+		if (u1 == null) {
 			u.setUserId(u.getUserId());
 			u.setName(u.getName());
 			u.setPassword(getEncodedPassword(u.getPassword()));
-	      uu = userRepo.save(u);
-		}
-		else
-		{
-			throw new Exception(u.getName()+" Already Exist");
+			uu = userRepo.save(u);
+		} else {
+			throw new Exception(u.getName() + " Already Exist");
 		}
 		return uu;
 	}
 
 	@Override
 	public User updateUser(int i, User u) throws ResourceNotFoundException {
-		User b= userRepo.findById(i)
+		User b = userRepo.findById(i)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + i));
-		User uu1=null;
+		User uu1 = null;
 		if (b != null) {
 			u.setUserId(u.getUserId());
 			u.setName(u.getName());
@@ -52,7 +49,7 @@ public class UserServiceImpl implements UserServiceInt {
 
 	@Override
 	public String deleteUser(int i) throws ResourceNotFoundException {
-		User b= userRepo.findById(i)
+		User b = userRepo.findById(i)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + i));
 		userRepo.deleteById(i);
 		return "User Deletd ";
@@ -62,7 +59,7 @@ public class UserServiceImpl implements UserServiceInt {
 	public Optional<User> getUserById(int i) throws ResourceNotFoundException
 
 	{
-		User b= userRepo.findById(i)
+		User b = userRepo.findById(i)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + i));
 		Optional<User> u = userRepo.findById(i);
 
@@ -71,22 +68,19 @@ public class UserServiceImpl implements UserServiceInt {
 
 	@Override
 	public User getUserByName(String name) throws ResourceNotFoundException {
-		User b= userRepo.getUserByName(name);
-		User u=null;
-		if(b!=null)
-		{
-		
-		 u = userRepo.getUserByName(name);
-		}
-		else
-		{
-			throw new ResourceNotFoundException("User is not Found int Db"+ name);
+		User b = userRepo.getUserByName(name);
+		User u = null;
+		if (b != null) {
+
+			u = userRepo.getUserByName(name);
+		} else {
+			throw new ResourceNotFoundException("User is not Found int Db" + name);
 		}
 		return u;
 	}
-	public String getEncodedPassword(String str)
-	{
+
+	public String getEncodedPassword(String str) {
 		return encoder.encode(str);
 	}
-	
+
 }
