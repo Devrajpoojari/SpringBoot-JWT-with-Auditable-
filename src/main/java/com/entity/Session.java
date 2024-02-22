@@ -1,11 +1,17 @@
 package com.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +38,9 @@ public class Session {
 	@Enumerated(EnumType.STRING)
 	private DeckType type;
 	
+	@OneToMany
+	@JoinColumn(name = "session_fk")
+	private List <Member> members;
 	
 
 }

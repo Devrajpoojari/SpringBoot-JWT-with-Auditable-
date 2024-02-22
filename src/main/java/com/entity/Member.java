@@ -6,17 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Entity(name = "user_entity")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class User extends Auditable<String> {
-	@Id
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Entity
+public class Member {
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userId;
+	private long memberId;
 	private String name;
 	private String password;
 }
